@@ -35,19 +35,34 @@ export default function Index() {
     <Layout>
       <div>
         {dataList.map((character: Characters) => (
-          <div key={character.id} style={{ marginBottom: '30px' }}>
+          <div
+            key={character.id}
+            style={{
+              marginBottom: '30px',
+              border: '1px solid #e7e7e7',
+              padding: '20px',
+            }}
+          >
             <Link
               style={{ textDecoration: 'none' }}
               to={character.id.toString()}
+              prefetch="intent"
             >
               <h3> {character.name}</h3>
-              <br />
-              <img src={character.image} alt={character.name} />
-              <ul>
-                <li>{character.status}</li>
-                <li>{character.species}</li>
-                <li>{character.gender}</li>
-              </ul>
+              <div style={{ display: 'flex' }}>
+                <img src={character.image} alt={character.name} />
+                <ul style={{ listStyle: 'none' }}>
+                  <li style={{ marginBottom: '5px' }}>
+                    Species: {character.species}
+                  </li>
+                  <li style={{ marginBottom: '5px' }}>
+                    Status : {character.status}
+                  </li>
+                  <li style={{ marginBottom: '5px' }}>
+                    Gender: {character.gender}
+                  </li>
+                </ul>
+              </div>
             </Link>
           </div>
         ))}
